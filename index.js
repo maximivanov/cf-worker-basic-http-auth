@@ -1,26 +1,63 @@
 /**
- * Here are what developers are expected to fill in
- * Replace url with the host you wish to send requests to
- * @param {string} url
+ * @param {string} USERNAME User name to access the page
+ * @param {string} PASSWORD Password to access the page
+ * @param {string} PASSWORD A name of an area (a page or a group of pages) to protect.
+ * Some browsers may show "Enter user name and password to access REALM"
  */
-const url = 'https://example.com'
+const USERNAME = 'demouser'
+const PASSWORD = 'demopassword'
+const REALM = 'Secure Area'
 
 /**
- * Helper function
- * Here is what my help does
- * @param {string} path
+ * Break down base64 encoded authorization string into plain-text username and password
+ * @param {string} authorization
+ * @returns {string[]}
  */
-function helper(path) {
-  return url + '/' + path
+function parseCredentials(authorization) {
+  const parts = authorization.split(' ')
+  const plainAuth = atob(parts[1])
+  const credentials = plainAuth.split(':')
+
+  return credentials
 }
 
 /**
- * Return a simple Hello World response
+ * Helper funtion to generate Response object
+ * @param {string} message
+ * @returns {Response}
+ */
+function getUnauthorizedResponse(message) {
+  let response = new Response(message, {
+    status: 401,
+  })
+
+  response.headers.set('WWW-Authenticate', `Basic realm="${REALM}"`)
+
+  return response
+}
+
+/**
  * @param {Request} request
+ * @returns {Response}
  */
 async function handleRequest(request) {
-  helper(request.url.path)
-  return new Response('Hello worker!', { status: 200 })
+  const authorization = request.headers.get('authorization')
+
+  if (!request.headers.has('authorization')) {
+    return getUnauthorizedResponse(
+      'Provide User Name and Password to access this page.',
+    )
+  }
+
+  const credentials = parseCredentials(authorization)
+
+  if (credentials[0] !== USERNAME || credentials[1] !== PASSWORD) {
+    return getUnauthorizedResponse(
+      'The User Name and Password combination you have entered is invalid.',
+    )
+  }
+
+  return await fetch(request)
 }
 
 addEventListener('fetch', event => {

@@ -1,26 +1,15 @@
-# Template Creator
+# Basic HTTP Authentication Cloudflare worker
 
-This is the template creator. To make a template:
+Use this worker to password-protect whole websites or just some areas/specific pages.
 
-1. run `git clone https://github.com/victoriabernard92/workers-template-creator myTempName`
+E.g. limit access to a staging version of a static website you're building.
 
-2. `cd myTempName`
+## Demo
 
-3. Add project logic to the directory. Run `npm install`.
+See <https://cloudflareworkers.com/#4796fabd94fb273bc9a7094a40b91d6d:https://tutorial.cloudflareworkers.com>
 
-4. Specify the entry point of the Worker script in package.json in `main` property.
+In this example, to see <https://tutorial.cloudflareworkers.com> you need to pass basic authentication.
 
-5. Fill out the `README.md`. Make sure to include:
+User name: `demouser`
 
-   - Description of what the Worker accomplishes.
-   - Demo. Ideally a demo using cloudflareworkers.com, but for Worker demos requiring special headers,
-     POST bodies,.. a live demo of where the Worker is running also works.
-
-6. Review the contribution guide thoroughly [here](./CONTRIBUTING.md)
-
-7. Commit source files omitting build files of course.
-
-8. Host a public repo, and then test your project by running `wrangler generate https://github.com/<your-repo>`.
-
-9. (Boilerplate) Submit a PR to add the template to the [template gallery](https://github.com/cloudflare/cloudflare-docs/edit/master/content/templates/_index.md) after having it approved.
-   (Snippet) Submit your code to Victoria. Ideally as a PR to a repo you own
+Password: `demopassword`
