@@ -1,0 +1,104 @@
+name: CI
+
+on: [pull_request]
+
+jobs:
+    build:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout commit
+              uses: actions/checkout@v2
+
+            - name: Use Node.js
+              uses: actions/setup-node@v1
+              with:
+                  node-version: '12.x'
+
+            - name: Cache NPM
+              uses: actions/cache@v1
+              with:
+                  path: ~/.npm
+                  key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+                  restore-keys: |
+                      ${{ runner.os }}-node-
+
+            - name: Install Dependencies
+              run: npm ci
+
+    lint:
+        runs-on: ubuntu-latest
+        needs: build
+        steps:
+            - name: Checkout commit
+              uses: actions/checkout@v2
+
+            - name: Use Node.js
+              uses: actions/setup-node@v1
+              with:
+                  node-version: '12.x'
+
+            - name: Cache NPM
+              uses: actions/cache@v1
+              with:
+                  path: ~/.npm
+                  key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+                  restore-keys: |
+                      ${{ runner.os }}-node-
+
+            - name: Install Dependencies
+              run: npm ci
+
+            - name: Run linter
+              run: npm run lint
+
+    security:
+        runs-on: ubuntu-latest
+        needs: build
+        steps:
+            - name: Checkout commit
+              uses: actions/checkout@v2
+
+            - name: Use Node.js
+              uses: actions/setup-node@v1
+              with:
+                  node-version: '12.x'
+
+            - name: Cache NPM
+              uses: actions/cache@v1
+              with:
+                  path: ~/.npm
+                  key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+                  restore-keys: |
+                      ${{ runner.os }}-node-
+
+            - name: Install Dependencies
+              run: npm ci
+
+            - name: Run security check
+              run: npm run audit-security
+
+    test:
+        runs-on: ubuntu-latest
+        needs: build
+        steps:
+            - name: Checkout commit
+              uses: actions/checkout@v2
+
+            - name: Use Node.js
+              uses: actions/setup-node@v1
+              with:
+                  node-version: '12.x'
+
+            - name: Cache NPM
+              uses: actions/cache@v1
+              with:
+                  path: ~/.npm
+                  key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+                  restore-keys: |
+                      ${{ runner.os }}-node-
+
+            - name: Install Dependencies
+              run: npm ci
+
+            - name: Run tests
+              run: npm run test
