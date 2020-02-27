@@ -3,7 +3,7 @@
   "description": "package for creating workers templates",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "echo \"There are no tests so far!\"",
     "format": "prettier --write '**/*.{js,css,json,md}'",
     "lint:js": "eslint \"**/*.{js,jsx,}\"",
     "lint:markdown": "markdownlint *.md",
