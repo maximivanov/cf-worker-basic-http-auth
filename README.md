@@ -6,9 +6,9 @@ E.g. limit access to a staging version of a static website you're building.
 
 ## Demo
 
-See <https://cloudflareworkers.com/#4796fabd94fb273bc9a7094a40b91d6d:https://tutorial.cloudflareworkers.com>
+See <https://cloudflareworkers.com/#f5d2cc53bd3d55486ddd14b1eb6e6c83:https://www.cloudflarestatus.com/>
 
-In this example, to see <https://tutorial.cloudflareworkers.com>
+In this example, to see <https://www.cloudflarestatus.com/>
 you need to pass basic authentication.
 
 User name: `demouser`
