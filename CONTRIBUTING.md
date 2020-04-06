@@ -1,17 +1,5 @@
 # Contributing
 
-## Branch Naming
-
-```text
-type/humanFriendlyDescription
-```
-
-Example:
-
-```text
-chore/upgradeLodashToLatestVersion
-```
-
 ## Commit Format
 
 Commit message is validated with
