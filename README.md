@@ -1,5 +1,9 @@
 # Basic HTTP Authentication Cloudflare worker
 
+**I've expanded on this a bit further in the blog post: [How to password-protect your website with Cloudflare Workers](https://www.maxivanov.io/how-to-password-protect-your-website-with-cloudflare-workers/)**
+
+---
+
 Use this worker to password-protect whole websites or some areas/specific pages.
 
 _E.g. limit access to a staging version of a website you're building._
